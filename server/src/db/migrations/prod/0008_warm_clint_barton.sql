@@ -1,0 +1,1 @@
+ALTER TABLE "session_mentor_map" ADD COLUMN "name" text NOT NULL;

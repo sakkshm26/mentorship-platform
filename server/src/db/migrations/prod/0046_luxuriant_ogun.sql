@@ -1,0 +1,1 @@
+ALTER TABLE "carnival_lead" ALTER COLUMN "type" DROP DEFAULT;

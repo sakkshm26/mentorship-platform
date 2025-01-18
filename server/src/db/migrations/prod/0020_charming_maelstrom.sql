@@ -1,0 +1,1 @@
+ALTER TYPE "skill" ADD VALUE 'image_processing';

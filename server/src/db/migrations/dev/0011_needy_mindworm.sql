@@ -1,0 +1,1 @@
+ALTER TABLE "mentor" ADD COLUMN "year_experience" "smallserial" NOT NULL;

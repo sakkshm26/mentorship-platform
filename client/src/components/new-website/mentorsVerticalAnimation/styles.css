@@ -1,0 +1,193 @@
+.carousel-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.mentor-card {
+    position: absolute;
+    right: 10%;
+    width: 100%;
+    max-width: 330px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.mentor-card.center {
+    transform: translateY(0);
+    z-index: 5;
+    opacity: 1;
+    height: 110px;
+}
+
+.mentor-card.above-center {
+    transform: translateY(-102px);
+    z-index: 4;
+    opacity: 0.7;
+    height: 67px;
+    /* filter: blur(1px); */
+}
+
+.mentor-card.below-center {
+    transform: translateY(102px);
+    z-index: 4;
+    opacity: 0.7;
+    height: 67px;
+    /* filter: blur(1px); */
+}
+
+.mentor-card.top {
+    transform: translateY(-182px);
+    z-index: 3;
+    opacity: 0.5;
+    filter: blur(2px);
+    height: 67px;
+}
+
+.mentor-card.bottom {
+    transform: translateY(182px);
+    z-index: 3;
+    opacity: 0.5;
+    filter: blur(2px);
+    height: 67px;
+}
+
+.mentor-card.hidden-top {
+    transform: translateY(-380px);
+    opacity: 0;
+}
+
+.mentor-card.hidden-bottom {
+    transform: translateY(380px);
+    opacity: 0;
+}
+
+.mentor-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -250px;
+    right: 44px;
+    width: 54rem;
+    height: 515px;
+    background: radial-gradient(circle, #388d3a38 0%, #00000000 50%);
+    z-index: 31;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 8000px) and (min-width: 1420px) {
+    .phone-mentor-animation {
+        margin-right: 30px;
+    }
+    .mentor-vertical-animation-wrapper {
+        margin-right: -100px;
+    }
+}
+
+@media screen and (max-width: 1420px) and (min-width: 1025px) {
+    .phone-mentor-animation {
+        margin-right: -30px;
+    }
+}
+
+@media screen and (max-width: 1390px) and (min-width: 1025px) {
+    .phone-mentor-animation {
+        transform: scale(0.8);
+    }
+
+    .phone-image {
+        margin-left: -90px;
+    }
+}
+
+@media screen and (max-width: 1120px) and (min-width: 1025px) {
+    .phone-mentor-animation {
+        transform: scale(0.7);
+    }
+
+    .phone-image {
+        margin-left: -140px;
+    }
+}
+
+@media screen and (max-width: 1025px) {
+    .phone-mentor-animation {
+        transform: scale(0.8);
+    }
+
+    .hero-section::before {
+        content: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .phone-mentor-animation {
+        right: -70px;
+    }
+
+    .phone-image {
+        margin-left: -150px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .phone-mentor-animation {
+        transform: scale(0.65);
+        right: -85px;
+        top: -50px;
+    }
+
+    .phone-image {
+        margin-left: -220px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .phone-mentor-animation {
+        transform: scale(0.62);
+        right: -85px;
+        top: -85px;
+    }
+
+    .phone-image {
+        margin-left: -245px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .phone-mentor-animation {
+        transform: scale(0.50);
+        right: -90px;
+    }
+
+    .phone-image {
+        margin-left: -300px;
+    }
+}
+
+/* vertical animation wrapper */
+@media screen and (max-width: 1460px) {
+    .mentor-vertical-animation-wrapper {
+        margin-right: -90px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .mentor-vertical-animation-wrapper {
+        margin-right: 0;
+    }
+}

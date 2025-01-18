@@ -1,0 +1,1 @@
+ALTER TABLE "mentor_experience" ADD COLUMN "about" text;

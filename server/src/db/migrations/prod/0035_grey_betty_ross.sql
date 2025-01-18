@@ -1,0 +1,1 @@
+ALTER TABLE "mentor" ALTER COLUMN "internal_rating" SET DEFAULT '4.5';

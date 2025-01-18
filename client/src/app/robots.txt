@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /mentee/mentor-list
+Allow: /mentors
+Allow: /privacy-policy
+Allow: /terms-conditions
+
+Sitemap: https://www.turtlex.in/sitemap.xml

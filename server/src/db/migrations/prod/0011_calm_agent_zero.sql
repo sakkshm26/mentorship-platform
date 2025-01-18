@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD COLUMN "linkedin_url" text;

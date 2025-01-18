@@ -1,0 +1,1 @@
+ALTER TABLE "mentor" ADD COLUMN "internal_rating" smallint DEFAULT 5;

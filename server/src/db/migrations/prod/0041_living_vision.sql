@@ -1,0 +1,1 @@
+ALTER TABLE "trial_booking" ALTER COLUMN "session_id" SET DATA TYPE text;

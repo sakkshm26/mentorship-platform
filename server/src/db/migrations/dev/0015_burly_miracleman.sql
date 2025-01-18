@@ -1,0 +1,1 @@
+ALTER TABLE "mentee" ADD COLUMN "monthly_budget_max" numeric(12, 2) DEFAULT '0.00' NOT NULL;

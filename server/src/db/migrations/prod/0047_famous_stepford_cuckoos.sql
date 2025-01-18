@@ -1,0 +1,1 @@
+ALTER TABLE "mentee" ADD COLUMN "trial_booked" boolean DEFAULT false NOT NULL;

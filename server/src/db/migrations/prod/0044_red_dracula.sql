@@ -1,0 +1,1 @@
+ALTER TABLE "mentor_list" ADD COLUMN "nano_id" text;

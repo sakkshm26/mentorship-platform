@@ -1,0 +1,3 @@
+export enum ErrorType {
+    ACCESS_TOKEN_EXPIRED = "ACCESS_TOKEN_EXPIRED"
+}

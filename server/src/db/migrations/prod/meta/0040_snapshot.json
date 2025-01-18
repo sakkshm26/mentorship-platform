@@ -1,0 +1,1704 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.mentee_domain_map": {
+      "name": "mentee_domain_map",
+      "schema": "",
+      "columns": {
+        "fk_domain_mentee": {
+          "name": "fk_domain_mentee",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "domain": {
+          "name": "domain",
+          "type": "domain",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentee_domain_map_fk_domain_mentee_mentee_id_fk": {
+          "name": "mentee_domain_map_fk_domain_mentee_mentee_id_fk",
+          "tableFrom": "mentee_domain_map",
+          "columnsFrom": [
+            "fk_domain_mentee"
+          ],
+          "tableTo": "mentee",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mentee_domain_map_fk_domain_mentee_domain_pk": {
+          "name": "mentee_domain_map_fk_domain_mentee_domain_pk",
+          "columns": [
+            "fk_domain_mentee",
+            "domain"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.mentee_skill_map": {
+      "name": "mentee_skill_map",
+      "schema": "",
+      "columns": {
+        "fk_skill_mentee": {
+          "name": "fk_skill_mentee",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "skill": {
+          "name": "skill",
+          "type": "skill",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentee_skill_map_fk_skill_mentee_mentee_id_fk": {
+          "name": "mentee_skill_map_fk_skill_mentee_mentee_id_fk",
+          "tableFrom": "mentee_skill_map",
+          "columnsFrom": [
+            "fk_skill_mentee"
+          ],
+          "tableTo": "mentee",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mentee_skill_map_fk_skill_mentee_skill_pk": {
+          "name": "mentee_skill_map_fk_skill_mentee_skill_pk",
+          "columns": [
+            "fk_skill_mentee",
+            "skill"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.mentee": {
+      "name": "mentee",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_mentee_user": {
+          "name": "fk_mentee_user",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "experience_level": {
+          "name": "experience_level",
+          "type": "experience_level",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "goal": {
+          "name": "goal",
+          "type": "goal_enum",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "monthly_budget_min": {
+          "name": "monthly_budget_min",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "monthly_budget_max": {
+          "name": "monthly_budget_max",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentee_fk_mentee_user_user_id_fk": {
+          "name": "mentee_fk_mentee_user_user_id_fk",
+          "tableFrom": "mentee",
+          "columnsFrom": [
+            "fk_mentee_user"
+          ],
+          "tableTo": "user",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "mentee_fk_mentee_user_unique": {
+          "name": "mentee_fk_mentee_user_unique",
+          "columns": [
+            "fk_mentee_user"
+          ],
+          "nullsNotDistinct": false
+        }
+      }
+    },
+    "public.mentor_domain_map": {
+      "name": "mentor_domain_map",
+      "schema": "",
+      "columns": {
+        "fk_domain_mentor": {
+          "name": "fk_domain_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "domain": {
+          "name": "domain",
+          "type": "domain",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_domain_map_fk_domain_mentor_mentor_id_fk": {
+          "name": "mentor_domain_map_fk_domain_mentor_mentor_id_fk",
+          "tableFrom": "mentor_domain_map",
+          "columnsFrom": [
+            "fk_domain_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mentor_domain_map_fk_domain_mentor_domain_pk": {
+          "name": "mentor_domain_map_fk_domain_mentor_domain_pk",
+          "columns": [
+            "fk_domain_mentor",
+            "domain"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.mentor_event": {
+      "name": "mentor_event",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_event_mentor": {
+          "name": "fk_event_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_event_schedule": {
+          "name": "fk_event_schedule",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_event_fk_event_mentor_mentor_id_fk": {
+          "name": "mentor_event_fk_event_mentor_mentor_id_fk",
+          "tableFrom": "mentor_event",
+          "columnsFrom": [
+            "fk_event_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "mentor_event_fk_event_schedule_mentor_schedule_id_fk": {
+          "name": "mentor_event_fk_event_schedule_mentor_schedule_id_fk",
+          "tableFrom": "mentor_event",
+          "columnsFrom": [
+            "fk_event_schedule"
+          ],
+          "tableTo": "mentor_schedule",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.mentor_experience": {
+      "name": "mentor_experience",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_experience_mentor": {
+          "name": "fk_experience_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "organization_name": {
+          "name": "organization_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position": {
+          "name": "position",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "start_date": {
+          "name": "start_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "end_date": {
+          "name": "end_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "about": {
+          "name": "about",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_experience_fk_experience_mentor_mentor_id_fk": {
+          "name": "mentor_experience_fk_experience_mentor_mentor_id_fk",
+          "tableFrom": "mentor_experience",
+          "columnsFrom": [
+            "fk_experience_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.mentor_language_map": {
+      "name": "mentor_language_map",
+      "schema": "",
+      "columns": {
+        "fk_language_mentor": {
+          "name": "fk_language_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "language": {
+          "name": "language",
+          "type": "language",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_language_map_fk_language_mentor_mentor_id_fk": {
+          "name": "mentor_language_map_fk_language_mentor_mentor_id_fk",
+          "tableFrom": "mentor_language_map",
+          "columnsFrom": [
+            "fk_language_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mentor_language_map_fk_language_mentor_language_pk": {
+          "name": "mentor_language_map_fk_language_mentor_language_pk",
+          "columns": [
+            "fk_language_mentor",
+            "language"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.mentor_list_booking": {
+      "name": "mentor_list_booking",
+      "schema": "",
+      "columns": {
+        "fk_booking_mentor_list": {
+          "name": "fk_booking_mentor_list",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_booking_mentor": {
+          "name": "fk_booking_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_list_booking_fk_booking_mentor_list_mentor_list_id_fk": {
+          "name": "mentor_list_booking_fk_booking_mentor_list_mentor_list_id_fk",
+          "tableFrom": "mentor_list_booking",
+          "columnsFrom": [
+            "fk_booking_mentor_list"
+          ],
+          "tableTo": "mentor_list",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "mentor_list_booking_fk_booking_mentor_mentor_id_fk": {
+          "name": "mentor_list_booking_fk_booking_mentor_mentor_id_fk",
+          "tableFrom": "mentor_list_booking",
+          "columnsFrom": [
+            "fk_booking_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mentor_list_booking_fk_booking_mentor_list_fk_booking_mentor_pk": {
+          "name": "mentor_list_booking_fk_booking_mentor_list_fk_booking_mentor_pk",
+          "columns": [
+            "fk_booking_mentor_list",
+            "fk_booking_mentor"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.mentor_list_map": {
+      "name": "mentor_list_map",
+      "schema": "",
+      "columns": {
+        "fk_mentor_id": {
+          "name": "fk_mentor_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_mentor_list": {
+          "name": "fk_mentor_list",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_list_map_fk_mentor_id_mentor_id_fk": {
+          "name": "mentor_list_map_fk_mentor_id_mentor_id_fk",
+          "tableFrom": "mentor_list_map",
+          "columnsFrom": [
+            "fk_mentor_id"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "mentor_list_map_fk_mentor_list_mentor_list_id_fk": {
+          "name": "mentor_list_map_fk_mentor_list_mentor_list_id_fk",
+          "tableFrom": "mentor_list_map",
+          "columnsFrom": [
+            "fk_mentor_list"
+          ],
+          "tableTo": "mentor_list",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mentor_list_map_fk_mentor_id_fk_mentor_list_pk": {
+          "name": "mentor_list_map_fk_mentor_id_fk_mentor_list_pk",
+          "columns": [
+            "fk_mentor_id",
+            "fk_mentor_list"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.mentor_list": {
+      "name": "mentor_list",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "session": {
+          "name": "session",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.mentor_review": {
+      "name": "mentor_review",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_review_mentor": {
+          "name": "fk_review_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_review_mentee": {
+          "name": "fk_review_mentee",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_review_fk_review_mentor_mentor_id_fk": {
+          "name": "mentor_review_fk_review_mentor_mentor_id_fk",
+          "tableFrom": "mentor_review",
+          "columnsFrom": [
+            "fk_review_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "mentor_review_fk_review_mentee_mentee_id_fk": {
+          "name": "mentor_review_fk_review_mentee_mentee_id_fk",
+          "tableFrom": "mentor_review",
+          "columnsFrom": [
+            "fk_review_mentee"
+          ],
+          "tableTo": "mentee",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.mentor_schedule_day_time": {
+      "name": "mentor_schedule_day_time",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_day_time_schedule": {
+          "name": "fk_day_time_schedule",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "day_name": {
+          "name": "day_name",
+          "type": "day_name",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "start_time": {
+          "name": "start_time",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_schedule_day_time_fk_day_time_schedule_mentor_schedule_id_fk": {
+          "name": "mentor_schedule_day_time_fk_day_time_schedule_mentor_schedule_id_fk",
+          "tableFrom": "mentor_schedule_day_time",
+          "columnsFrom": [
+            "fk_day_time_schedule"
+          ],
+          "tableTo": "mentor_schedule",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.mentor_schedule": {
+      "name": "mentor_schedule",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_schedule_mentor": {
+          "name": "fk_schedule_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_schedule_fk_schedule_mentor_mentor_id_fk": {
+          "name": "mentor_schedule_fk_schedule_mentor_mentor_id_fk",
+          "tableFrom": "mentor_schedule",
+          "columnsFrom": [
+            "fk_schedule_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.mentor_skill_map": {
+      "name": "mentor_skill_map",
+      "schema": "",
+      "columns": {
+        "fk_skill_mentor": {
+          "name": "fk_skill_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "skill": {
+          "name": "skill",
+          "type": "skill",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_skill_map_fk_skill_mentor_mentor_id_fk": {
+          "name": "mentor_skill_map_fk_skill_mentor_mentor_id_fk",
+          "tableFrom": "mentor_skill_map",
+          "columnsFrom": [
+            "fk_skill_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mentor_skill_map_fk_skill_mentor_skill_pk": {
+          "name": "mentor_skill_map_fk_skill_mentor_skill_pk",
+          "columns": [
+            "fk_skill_mentor",
+            "skill"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.mentor": {
+      "name": "mentor",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_mentor_user": {
+          "name": "fk_mentor_user",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "heading": {
+          "name": "heading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "about": {
+          "name": "about",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trial_fee": {
+          "name": "trial_fee",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "per_month_fee": {
+          "name": "per_month_fee",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "year_experience": {
+          "name": "year_experience",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "internal_rating": {
+          "name": "internal_rating",
+          "type": "numeric(2, 1)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'4.5'"
+        },
+        "external_rating": {
+          "name": "external_rating",
+          "type": "numeric(2, 1)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'0'"
+        },
+        "session_count": {
+          "name": "session_count",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mentor_fk_mentor_user_user_id_fk": {
+          "name": "mentor_fk_mentor_user_user_id_fk",
+          "tableFrom": "mentor",
+          "columnsFrom": [
+            "fk_mentor_user"
+          ],
+          "tableTo": "user",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "mentor_fk_mentor_user_unique": {
+          "name": "mentor_fk_mentor_user_unique",
+          "columns": [
+            "fk_mentor_user"
+          ],
+          "nullsNotDistinct": false
+        }
+      }
+    },
+    "public.payment": {
+      "name": "payment",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_payment_trial_booking": {
+          "name": "fk_payment_trial_booking",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type": {
+          "name": "type",
+          "type": "payment_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "payment_id": {
+          "name": "payment_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "order_id": {
+          "name": "order_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "signature": {
+          "name": "signature",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_id": {
+          "name": "event_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "name": "amount",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "currency": {
+          "name": "currency",
+          "type": "currency",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "payment_fk_payment_trial_booking_trial_booking_id_fk": {
+          "name": "payment_fk_payment_trial_booking_trial_booking_id_fk",
+          "tableFrom": "payment",
+          "columnsFrom": [
+            "fk_payment_trial_booking"
+          ],
+          "tableTo": "trial_booking",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "payment_payment_id_unique": {
+          "name": "payment_payment_id_unique",
+          "columns": [
+            "payment_id"
+          ],
+          "nullsNotDistinct": false
+        },
+        "payment_event_id_unique": {
+          "name": "payment_event_id_unique",
+          "columns": [
+            "event_id"
+          ],
+          "nullsNotDistinct": false
+        }
+      }
+    },
+    "public.trial_booking": {
+      "name": "trial_booking",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_booking_mentor": {
+          "name": "fk_booking_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_booking_mentee": {
+          "name": "fk_booking_mentee",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "session_id": {
+          "name": "session_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "trial_booking_fk_booking_mentor_mentor_id_fk": {
+          "name": "trial_booking_fk_booking_mentor_mentor_id_fk",
+          "tableFrom": "trial_booking",
+          "columnsFrom": [
+            "fk_booking_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "trial_booking_fk_booking_mentee_mentee_id_fk": {
+          "name": "trial_booking_fk_booking_mentee_mentee_id_fk",
+          "tableFrom": "trial_booking",
+          "columnsFrom": [
+            "fk_booking_mentee"
+          ],
+          "tableTo": "mentee",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.user": {
+      "name": "user",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_user_mentor": {
+          "name": "fk_user_mentor",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fk_user_mentee": {
+          "name": "fk_user_mentee",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "phone": {
+          "name": "phone",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "profile_image_url": {
+          "name": "profile_image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkedin_url": {
+          "name": "linkedin_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_fk_user_mentor_mentor_id_fk": {
+          "name": "user_fk_user_mentor_mentor_id_fk",
+          "tableFrom": "user",
+          "columnsFrom": [
+            "fk_user_mentor"
+          ],
+          "tableTo": "mentor",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "user_fk_user_mentee_mentee_id_fk": {
+          "name": "user_fk_user_mentee_mentee_id_fk",
+          "tableFrom": "user",
+          "columnsFrom": [
+            "fk_user_mentee"
+          ],
+          "tableTo": "mentee",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_fk_user_mentor_unique": {
+          "name": "user_fk_user_mentor_unique",
+          "columns": [
+            "fk_user_mentor"
+          ],
+          "nullsNotDistinct": false
+        },
+        "user_fk_user_mentee_unique": {
+          "name": "user_fk_user_mentee_unique",
+          "columns": [
+            "fk_user_mentee"
+          ],
+          "nullsNotDistinct": false
+        },
+        "user_email_unique": {
+          "name": "user_email_unique",
+          "columns": [
+            "email"
+          ],
+          "nullsNotDistinct": false
+        },
+        "user_phone_unique": {
+          "name": "user_phone_unique",
+          "columns": [
+            "phone"
+          ],
+          "nullsNotDistinct": false
+        }
+      }
+    },
+    "public.user_token": {
+      "name": "user_token",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "fk_token_user": {
+          "name": "fk_token_user",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refresh_token": {
+          "name": "refresh_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_token_fk_token_user_user_id_fk": {
+          "name": "user_token_fk_token_user_user_id_fk",
+          "tableFrom": "user_token",
+          "columnsFrom": [
+            "fk_token_user"
+          ],
+          "tableTo": "user",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_token_refresh_token_unique": {
+          "name": "user_token_refresh_token_unique",
+          "columns": [
+            "refresh_token"
+          ],
+          "nullsNotDistinct": false
+        }
+      }
+    }
+  },
+  "enums": {
+    "public.currency": {
+      "name": "currency",
+      "schema": "public",
+      "values": [
+        "INR"
+      ]
+    },
+    "public.day_name": {
+      "name": "day_name",
+      "schema": "public",
+      "values": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ]
+    },
+    "public.domain": {
+      "name": "domain",
+      "schema": "public",
+      "values": [
+        "artificial_intelligence",
+        "backend",
+        "blockchain",
+        "business_analysis",
+        "cybersecurity",
+        "data_analysis",
+        "data_engineering",
+        "data_science",
+        "devops",
+        "engineering_management",
+        "finance",
+        "frontend",
+        "fullstack",
+        "game_development",
+        "hr",
+        "machine_learning",
+        "marketing",
+        "mobile_dev",
+        "product_management",
+        "sales",
+        "testing",
+        "ui_ux_design"
+      ]
+    },
+    "public.experience_level": {
+      "name": "experience_level",
+      "schema": "public",
+      "values": [
+        "fresher",
+        "working_professional",
+        "student",
+        "other"
+      ]
+    },
+    "public.goal_enum": {
+      "name": "goal_enum",
+      "schema": "public",
+      "values": [
+        "upskilling",
+        "placements",
+        "coursework",
+        "job_switch",
+        "domain_or_role_switch",
+        "promotion",
+        "unemployed_looking_for_job",
+        "other"
+      ]
+    },
+    "public.language": {
+      "name": "language",
+      "schema": "public",
+      "values": [
+        "english",
+        "hindi"
+      ]
+    },
+    "public.payment_type": {
+      "name": "payment_type",
+      "schema": "public",
+      "values": [
+        "trial_booking"
+      ]
+    },
+    "public.skill": {
+      "name": "skill",
+      "schema": "public",
+      "values": [
+        "ajax",
+        "algorithms",
+        "analytics",
+        "android",
+        "angular",
+        "animation",
+        "ansible",
+        "apache_hadoop",
+        "apache_hive",
+        "apache_nifi",
+        "apache_spark",
+        "api",
+        "app_design",
+        "artificial_intelligence",
+        "asp_dot_net",
+        "aws",
+        "azure",
+        "big_data",
+        "bitbucket",
+        "bootstrap",
+        "c",
+        "competitive_analysis",
+        "competitive_programming",
+        "computer_network",
+        "computer_vision",
+        "ci_cd",
+        "c_sharp",
+        "cassandra",
+        "cpp",
+        "css",
+        "dart",
+        "data_structures",
+        "datadog",
+        "dbms",
+        "deep_learning",
+        "design_theory",
+        "design_systems",
+        "distributed_systems",
+        "django",
+        "docker",
+        "dot_net",
+        "dsa",
+        "dynamodb",
+        "elastic_search",
+        "elk_stack",
+        "entrepreneurship",
+        "express_js",
+        "fast_api",
+        "financial_analysis",
+        "fine_tune",
+        "firebase",
+        "flask",
+        "flutter",
+        "gcp",
+        "generative_ai",
+        "gin",
+        "git",
+        "github_actions",
+        "gitlab",
+        "golang",
+        "grafana",
+        "graphql",
+        "heroku",
+        "hld",
+        "html",
+        "image_processing",
+        "interactive_design",
+        "interview_preparation",
+        "interviewing",
+        "ionic",
+        "ios",
+        "java",
+        "javascript",
+        "jenkins",
+        "jquery",
+        "kafka",
+        "keras",
+        "kotlin",
+        "kubernetes",
+        "llm",
+        "leadership",
+        "linux",
+        "lld",
+        "mariadb",
+        "market_research",
+        "matlab",
+        "memcached",
+        "mern",
+        "microservices",
+        "mlops",
+        "mongodb",
+        "monolith",
+        "ms_excel",
+        "ms_powerpoint",
+        "ms_word",
+        "mysql",
+        "nest_js",
+        "netlify",
+        "new_relic",
+        "neural_network",
+        "next_js",
+        "natural_language_processing",
+        "node_js",
+        "nosql",
+        "oop",
+        "opencv",
+        "open_source",
+        "operating_system",
+        "oracle",
+        "php",
+        "power_bi",
+        "presentation",
+        "product_design",
+        "product_development_and_planning",
+        "product_knowledge",
+        "product_leadership",
+        "product_life_cycle",
+        "product_requirement_document",
+        "project_management",
+        "prometheus",
+        "psql",
+        "pubsub",
+        "python",
+        "py_spark",
+        "pytorch",
+        "quantum_computing",
+        "r",
+        "rabbitmq",
+        "react_js",
+        "react_native",
+        "redis",
+        "redux",
+        "rest",
+        "risk_management",
+        "ruby",
+        "rust",
+        "sas",
+        "scripting",
+        "sentry",
+        "snowflake",
+        "soap",
+        "solidity",
+        "spring_boot",
+        "sql",
+        "sqlite",
+        "svelte",
+        "swift",
+        "system_design",
+        "tableau",
+        "tailwind_css",
+        "teamwork",
+        "team_management",
+        "tensorflow",
+        "terraform",
+        "three_d",
+        "typescript",
+        "unity",
+        "user_design",
+        "user_experience",
+        "user_flows",
+        "user_research",
+        "vercel",
+        "visual_design",
+        "vue_js",
+        "web_design",
+        "web_socket",
+        "wireframes"
+      ]
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "id": "249f05a8-9144-4fad-8a09-d3ff0d52bc26",
+  "prevId": "6cfb77db-3acd-4f83-a5e1-9aacf0bb654b",
+  "sequences": {}
+}
